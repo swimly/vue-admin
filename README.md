@@ -1,30 +1,8 @@
-# demo
+# vue版本信息管理系统后台
+主要完成用户、文章、项目管理，配合设置，统计，完成一个较为完善的信息管理系统！
+## 写文章页面
+<img src="./screenshots/1.png" alt="">
 
-> A Vue.js project
+## 设置页面-修改头像
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+<img src="./screenshots/2.png" alt="">
