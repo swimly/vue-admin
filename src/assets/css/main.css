@@ -1,0 +1,95 @@
+html,body{
+  height:100%;
+  margin:0;
+}
+.app{
+  height:100%;
+  overflow:hidden;
+}
+button:focus{
+  outline:none;
+}
+.title{
+  font-size:22px;
+  font-weight:normal;
+  color:#666;
+  margin-bottom:10px;
+}
+.sub-title{
+  font-weight:normal;
+  font-size:16px;
+  padding:10px;
+  border-bottom:1px solid #E1E1E5;
+  margin-bottom:10px;
+}
+.v-m{
+  vertical-align: middle;
+}
+.tip{
+  font-size:12px;
+  color:#CACFD3;padding:10px 0;
+}
+.ivu-breadcrumb{
+  vertical-align: middle;
+}
+.content{
+  position: relative;
+  z-index:1000;
+  padding-top:33px !important;
+}
+.ivu-row{
+  font-size:0;
+}
+.ivu-col{
+  vertical-align: middle;
+  display:inline-block;
+  float:none;
+}
+.text{
+  display:inline-block;
+  font-size:14px;
+  color:#666;
+}
+.ql-snow .ql-stroke{
+  stroke: #777 !important;
+}
+.ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill{
+  fill: #777 !important;
+}
+.ql-toolbar.ql-snow,.ql-container.ql-snow{
+  border-color:#ddd !important;
+}
+.ql-container.ql-snow{
+  border-radius:0 0 3px 3px;
+}
+.ql-toolbar.ql-snow{
+  border-radius:3px 3px 0 0;
+}
+.view{
+  padding:10px 0 0 0;
+  padding-top:52px;
+  height:100%;
+}
+.view .head-inner{
+  margin-top:-52px;
+  padding:10px 15px;
+  height:52px !important;
+}
+.view .panel{
+  height:100%;
+  overflow:auto;
+  padding:15px;
+}
+.phone{
+  background:url(../phone.png) no-repeat center center;
+  background-size:contain;
+}
+
+.pad{
+  background:url(../pad.png) no-repeat center center;
+  background-size:contain;
+}
+.mac{
+  background:url(../mac.png) no-repeat center center;
+  background-size:contain;
+}
