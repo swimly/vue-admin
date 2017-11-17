@@ -200,10 +200,17 @@ export default {
     },
     inputBlur () {
       if (this.tagValue.replace(/\s+/g, '')) {
-        this.form.tags.push(this.tagValue.replace(/\s+/g, ''))
+        if (this.tagValue.length > 6) {
+          this.$Message.error('每个标签不能超过6个文字！')
+        } else {
+          this.form.tags.push(this.tagValue.replace(/\s+/g, ''))
+          this.taging = false
+          this.tagValue = ''
+        }
+      } else {
+        this.taging = false
+        this.tagValue = ''
       }
-      this.taging = false
-      this.tagValue = ''
     },
     upSuccess (res, file, fileList) {
       this.form.cover = res.data
