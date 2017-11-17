@@ -6,3 +6,10 @@
 ## 设置页面-修改头像
 
 <img src="./screenshots/2.png" alt="">
+
+## 登录页面
+<img src="./screenshots/3.png" alt="">
+
+## 新增项目
+
+<img src="./screenshots/4.png" alt="">
