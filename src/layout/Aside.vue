@@ -55,6 +55,7 @@
 <script>
   import Face from '@/components/Face'
   import HeadInfo from '@/components/HeadInfo'
+  import {mapMutations} from 'vuex'
   export default {
     data () {
       return {
@@ -67,6 +68,7 @@
     },
     created () {
       this.change()
+      this.updateUserInfo(JSON.parse(this.$cookie.get('userInfo')))
     },
     methods: {
       jump (name) {
@@ -74,7 +76,10 @@
       },
       change (v, o) {
         this.active = '/' + this.$route.path.split('/')[1]
-      }
+      },
+      ...mapMutations({
+        updateUserInfo: 'updateUserInfo'
+      })
     },
     watch: {
       '$route': 'change'
