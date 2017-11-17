@@ -7,6 +7,8 @@ import store from './store'
 import Croppa from 'vue-croppa'
 import 'vue-croppa/dist/vue-croppa.css'
 import VueMeta from 'vue-meta'
+import VueCookie from 'vue-cookie'
+Vue.use(VueCookie)
 Vue.use(VueMeta)
 Vue.use(Croppa)
 /* eslint-disable no-new */
