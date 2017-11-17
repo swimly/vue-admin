@@ -1,23 +1,31 @@
 <template>
   <div class="view">
-    <Breadcrumb>
-      <BreadcrumbItem to="/home">首页</BreadcrumbItem>
-      <BreadcrumbItem to="/setting">综合设置</BreadcrumbItem>
-    </Breadcrumb>
+    <Row class="head-inner">
+      <Col span="12">
+        <Breadcrumb>
+          <BreadcrumbItem to="/home">首页</BreadcrumbItem>
+          <BreadcrumbItem to="/setting">综合设置</BreadcrumbItem>
+        </Breadcrumb>
+      </Col>
+      <Col span="12" style="text-align:right;">
+      </Col>
+    </Row>
     <!-- <h1 class="title">账户设置</h1> -->
-    <Tabs value="name1">
-      <TabPane label="基本信息" name="name1">
-        <h2 class="sub-title">头像</h2>
-        <edit-face/>
-        <h2 class="sub-title">基本信息</h2>
-        <edit-info style="width:50%;margin-top:20px;"/>
-      </TabPane>
-      <TabPane label="个性化设置" name="name2">
-      </TabPane>
-      <TabPane label="账户安全" name="name3">标签三的内容</TabPane>
-      <TabPane label="消息设置" name="name4">标签三的内容</TabPane>
-      <TabPane label="应用管理" name="name5">标签三的内容</TabPane>
-    </Tabs>
+    <div class="panel">
+      <Tabs value="name1">
+        <TabPane label="基本信息" name="name1">
+          <h2 class="sub-title">头像</h2>
+          <edit-face/>
+          <h2 class="sub-title">基本信息</h2>
+          <edit-info style="width:50%;margin-top:20px;"/>
+        </TabPane>
+        <TabPane label="个性化设置" name="name2">
+        </TabPane>
+        <TabPane label="账户安全" name="name3">标签三的内容</TabPane>
+        <TabPane label="消息设置" name="name4">标签三的内容</TabPane>
+        <TabPane label="应用管理" name="name5">标签三的内容</TabPane>
+      </Tabs>
+    </div>
   </div>
 </template>
 <script>
