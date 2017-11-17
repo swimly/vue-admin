@@ -5,25 +5,11 @@
         <Breadcrumb>
           <BreadcrumbItem to="/home">首页</BreadcrumbItem>
           <BreadcrumbItem to="/project">项目管理</BreadcrumbItem>
+          <BreadcrumbItem to="/project/add">新增项目</BreadcrumbItem>
         </Breadcrumb>
       </Col>
       <Col span="12" style="text-align:right;">
-        <Button type="primary" class="v-m" @click="jump('/project/add')">新增项目</Button>
       </Col>
     </Row>
-    <div class="panel">
-    </div>
   </div>
 </template>
-<script>
-  export default {
-    metaInfo: {
-      title: '项目管理'
-    },
-    methods: {
-      jump (url) {
-        this.$router.push(url)
-      }
-    }
-  }
-</script>

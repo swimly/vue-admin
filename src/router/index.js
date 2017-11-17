@@ -45,6 +45,12 @@ const route = new Router({
           content: resolve => require(['@/pages/project/Index'], resolve)
         }
       }, {
+        path: '/project/add',
+        name: 'projectadd',
+        components: {
+          content: resolve => require(['@/pages/project/Add'], resolve)
+        }
+      }, {
         path: '/setting',
         name: 'setting',
         components: {

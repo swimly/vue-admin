@@ -16,10 +16,11 @@
     </div>
     <Modal
         v-model="addModal"
-        width="700"
+        width="650"
         @on-ok="handleAdd"
+        :mask-closable="false"
         title="新增用户">
-        <add-user ref="adduser"/>
+        <add-user ref="adduser" style="padding:0 20px;"/>
     </Modal>
   </div>
 </template>
