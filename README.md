@@ -13,3 +13,7 @@
 ## 新增项目
 
 <img src="./screenshots/4.png" alt="">
+
+## 添加登录超时，以及登录验证
+<img src="./screenshots/5.png" alt="">
+<img src="./screenshots/6.png" alt="">

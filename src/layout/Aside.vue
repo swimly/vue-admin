@@ -59,18 +59,45 @@
   export default {
     data () {
       return {
-        active: '/home'
+        active: '/home',
+        count: 0,
+        time: 0.1,
+        timer: null
       }
     },
     components: {
       Face,
       HeadInfo
     },
+    mounted () {
+      document.onmousemove = (e) => {
+        this.count = 0
+      }
+      this.timer = setInterval(this.setTime, 1000)
+    },
     created () {
-      this.change()
-      this.updateUserInfo(JSON.parse(this.$cookie.get('userInfo')))
+      if (!this.$cookie.get('userInfo')) {
+        this.$Message.warning('非法进入，您尚未登录本系统，请先登录！')
+        this.$router.replace('/login')
+      } else {
+        this.change()
+        this.updateUserInfo(JSON.parse(this.$cookie.get('userInfo')))
+      }
+      // console.log(this.$cookie.get('userInfo'))
     },
     methods: {
+      setTime () {
+        this.count ++
+        if (this.count > this.time * 60) {
+          clearInterval(this.timer)
+          console.log('超时')
+          this.$cookie.delete('userInfo')
+          this.$Message.warning('登录超时，即将跳转到登录页面，请重新登录！')
+          setTimeout(() => {
+            this.$router.replace('/login')
+          }, 1000)
+        }
+      },
       jump (name) {
         this.$router.replace(name)
       },
