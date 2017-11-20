@@ -34,6 +34,17 @@
         }
       }
     },
+    mounted () {
+      document.onkeydown = (e) => {
+        if (e.keyCode === 13) {
+          this.handleLogin()
+        }
+      }
+      if (this.$cookie.get('userInfo')) {
+        this.$Message.warning('您已登录，不需要重新登录！')
+        this.$router.replace('/home')
+      }
+    },
     methods: {
       handleLogin () {
         this.loading = !this.loading

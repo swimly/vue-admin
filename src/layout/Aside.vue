@@ -61,7 +61,7 @@
       return {
         active: '/home',
         count: 0,
-        time: 0.1,
+        time: 30,
         timer: null
       }
     },
@@ -110,6 +110,9 @@
     },
     watch: {
       '$route': 'change'
+    },
+    destroyed () {
+      clearInterval(this.timer)
     }
   }
 </script>

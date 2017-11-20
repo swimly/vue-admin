@@ -5,15 +5,15 @@ const state = {
   loading: false,
   articleContent: '',
   userInfo: {
-    face: 'https://zhanziyang.github.io/vue-croppa/static/500.jpeg',
-    name: '刘勇',
+    face: '',
+    name: '',
     sex: 0,
-    birthday: '1990-12-25',
-    tel: '18827078587',
-    email: '979741120@qq.com',
-    QQ: '979741120',
-    live: '湖北省武汉市',
-    birth: '湖北省咸宁市'
+    birthday: '',
+    tel: '',
+    email: '',
+    QQ: '',
+    live: '',
+    birth: ''
   }
 }
 const getters = {
