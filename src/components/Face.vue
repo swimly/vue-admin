@@ -1,15 +1,21 @@
 <template>
   <div class="user">
-    <img :src="userInfo.face" alt="">
+    <img :src="file + userInfo.face" alt="">
   </div>
 </template>
 <script>
   import {mapGetters} from 'vuex'
+  import {file} from '@/config'
   export default {
     computed: {
       ...mapGetters({
         userInfo: 'userInfo'
       })
+    },
+    data () {
+      return {
+        file: file
+      }
     }
   }
 </script>

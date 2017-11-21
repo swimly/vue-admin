@@ -2,7 +2,7 @@
   <div class='crop'>
     <Row>
       <Col span='24'>
-        <img class='face v-m' :src='userInfo.face' alt=''>
+        <img class='face v-m' :src='file + userInfo.face' alt=''>
         <Button type='ghost' class='v-m' @click='modal = true'>设置头像</Button>
       </Col>
     </Row>
@@ -16,14 +16,11 @@
         <Col span='12'>
           <croppa
             v-model='croppa'
-            :initial-image='userInfo.face'
             placeholder="请选择一张图片"
             :placeholder-font-size="14"
           />
         </Col>
         <Col span='12'>
-          <img class='face large' :src='userInfo.face' alt=''>
-          <img class='face' :src='userInfo.face' alt=''>
         </Col>
       </Row>
       <div class='btns' style='margin-top:20px;'>
@@ -62,15 +59,16 @@
         </Tooltip>
         <!-- <button @click='dataUrl = croppa.generateDataUrl()' class='iconfont icon-crop'></button>
         <button @click='dataUrl = croppa.generateDataUrl('image/jpeg')' class='iconfont icon-crop'></button> -->
-        <Tooltip content='裁剪' placement='top'>
+        <!-- <Tooltip content='裁剪' placement='top'>
           <button @click='crop' class='iconfont icon-crop'></button>
-        </Tooltip>
+        </Tooltip> -->
       </div>
     </Modal>
   </div>
 </template>
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import {base64, editUser, file} from '@/config'
 import axios from 'axios'
 export default {
   components: {},
@@ -78,7 +76,8 @@ export default {
     return {
       dataUrl: null,
       croppa: null,
-      modal: false
+      modal: false,
+      file: file
     }
   },
   computed: {
@@ -88,11 +87,12 @@ export default {
     })
   },
   created () {
-    axios.get('http://192.168.3.214/web/api/public/visual').then(res => {
-      // console.log(res)
-    })
+    console.log(this.userInfo)
   },
   methods: {
+    ...mapMutations({
+      updateUserInfo: 'updateUserInfo'
+    }),
     crop () {
       this.dataUrl = this.croppa.generateDataUrl('image/jpeg', 0.8)
       this.updateUserInfo({
@@ -102,21 +102,34 @@ export default {
       // console.log(this.dataUrl)
     },
     submit () {
-      this.modal = false
-      this.$Message.success('头像修改成功！')
+      this.dataUrl = this.croppa.generateDataUrl('image/jpeg', 0.8)
+      this.updateUserInfo({
+        face: this.dataUrl
+      })
       // var blob = this.dataURItoBlob(this.dataUrl)
       var formdata = new FormData()
       formdata.append('upFile', this.dataUrl)
       console.log(formdata)
       axios({
-        url: 'http://192.168.3.214/web/api/public/upload/base64',
+        url: base64,
         method: 'post',
         data: formdata,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       }).then(res => {
-        console.log(res)
+        axios({
+          url: editUser + this.userInfo.uId,
+          method: 'get',
+          params: {
+            'face': res.data
+          }
+        }).then(res => {
+          this.$Message.success('头像修改成功！')
+          this.updateUserInfo(res.data)
+          this.$cookie.set('userInfo', JSON.stringify(res.data))
+          this.modal = false
+        })
       })
     },
     dataURItoBlob (base64Data) {

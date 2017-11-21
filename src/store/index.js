@@ -9,11 +9,11 @@ const state = {
     name: '',
     sex: 0,
     birthday: '',
-    tel: '',
+    phone: '',
     email: '',
     QQ: '',
-    live: '',
-    birth: ''
+    domicile: '',
+    birthplace: ''
   }
 }
 const getters = {

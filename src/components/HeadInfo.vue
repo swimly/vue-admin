@@ -29,9 +29,7 @@
     data () {
       return {
         logoutModal: false,
-        lockModal: false,
-        width: 0,
-        height:0
+        lockModal: false
       }
     },
     computed: {
