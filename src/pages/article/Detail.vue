@@ -5,6 +5,7 @@
         <Breadcrumb>
           <BreadcrumbItem to="/home">首页</BreadcrumbItem>
           <BreadcrumbItem to="/article">文章管理</BreadcrumbItem>
+          <BreadcrumbItem :to="'/articles/' + info.aId">{{info.title}}</BreadcrumbItem>
         </Breadcrumb>
       </Col>
       <Col span="12" style="text-align:right;">
@@ -12,18 +13,12 @@
       </Col>
     </Row>
     <div class="panel">
-      <ul class="article-list">
-        <li v-for="(item, index) in list" :key="index">
-          <h2><router-link :to="'/articles/' + item.aId">{{item.title}}</router-link></h2>
-          <img :src="file + item.cover" alt="">
-          <p class="summary">{{item.summary}}</p>
-        </li>
-      </ul>
+      <div class="markdown-body" v-html="info.description" v-if="info.description"></div>
     </div>
   </div>
 </template>
 <script>
-  import {articleServer, file} from '@/config'
+  import {articleInfo, file} from '@/config'
   import axios from 'axios'
   export default {
     metaInfo: {
@@ -31,30 +26,34 @@
     },
     data () {
       return {
-        list: [],
+        info: {},
         file: file
       }
     },
     created () {
-      this.getList()
+      this.getInfo()
     },
     methods: {
       jump (url) {
         this.$router.push(url)
       },
-      getList () {
+      getInfo () {
         axios({
-          url: articleServer,
+          url: articleInfo + this.$route.params.id,
           methods: 'get'
         }).then(res => {
           console.log(res)
-          this.list = res.data.data
+          this.info = res.data
         })
       }
     }
   }
 </script>
 <style>
+@import '~simplemde-theme-base/dist/simplemde-theme-base.min.css';
+@import '~highlight.js/styles/atom-one-light.css';
+@import '~github-markdown-css';
 .article-list h2{font-size:16px;}
 .article-list .summary{font-size:14px;}
+.panel{font-size:14px;}
 </style>

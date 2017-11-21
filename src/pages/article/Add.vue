@@ -147,7 +147,7 @@ export default {
   data () {
     return {
       model: 'markdown',
-      preview: true,
+      preview: false,
       taging: false,
       tagValue: '',
       file: file,

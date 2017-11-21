@@ -39,6 +39,12 @@ const route = new Router({
           content: resolve => require(['@/pages/article/Add'], resolve)
         }
       }, {
+        path: '/articles/:id',
+        name: 'articledetail',
+        components: {
+          content: resolve => require(['@/pages/article/Detail'], resolve)
+        }
+      }, {
         path: '/project',
         name: 'project',
         components: {
