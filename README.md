@@ -17,3 +17,5 @@
 ## 添加登录超时，以及登录验证
 <img src="./screenshots/5.png" alt="">
 <img src="./screenshots/6.png" alt="">
+ ## 添加发布文章，文章详情页
+ <img src="./screenshots/7.png" alt="">
