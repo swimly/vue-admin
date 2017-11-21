@@ -13,7 +13,7 @@
       <span v-if="!edit">{{setSex(form.sex)}}</span>
     </FormItem>
     <FormItem label="生日：">
-      <DatePicker type="date" placeholder="请选择出生日期" v-model="form.birthday" v-if="edit"></DatePicker>
+      <DatePicker type="datetime" placeholder="请选择出生日期" v-model="form.birthday" v-if="edit" @on-change="changeTime"></DatePicker>
       <span v-if="!edit">{{form.birthday}}</span>
     </FormItem>
     <FormItem label="手机号码：">
@@ -61,7 +61,6 @@
     methods: {
       submit () {
         this.edit = !this.edit
-        this.form.birthday = this.form.birthday.getTime()
         axios({
           url: editUser + this.form.uId,
           methods: 'get',
@@ -82,6 +81,11 @@
           case 2:
             return '保密'
         }
+      },
+      changeTime (date) {
+        let birth = date
+        let stamp = Date.parse(new Date(birth)) / 1000
+        this.form.birthday = stamp
       },
       ...mapMutations({
         updateUserInfo: 'updateUserInfo'

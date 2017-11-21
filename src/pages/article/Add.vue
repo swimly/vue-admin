@@ -73,7 +73,7 @@
               </Col>
               <Col style="width:150px;">
                 <FormItem label="推荐：">
-                  <i-switch v-model="form.recommend">
+                  <i-switch v-model="result.recommend">
                     <span slot="open">是</span>
                     <span slot="close">否</span>
                   </i-switch>
@@ -81,7 +81,7 @@
               </Col>
               <Col style="width:150px;">
                 <FormItem label="加精：">
-                  <i-switch v-model="form.digest">
+                  <i-switch v-model="result.fine">
                     <span slot="open">是</span>
                     <span slot="close">否</span>
                   </i-switch>
@@ -93,13 +93,13 @@
               <editor-html v-if="model === '富文本'"/>
             </FormItem>
             <FormItem label="声明原创：">
-              <i-switch v-model="form.original">
+              <i-switch v-model="result.original">
                 <span slot="open">是</span>
                 <span slot="close">否</span>
               </i-switch>
             </FormItem>
             <FormItem label="原文链接：">
-              <Input v-model="form.link" placeholder="请输入原文链接" style="width:800px;"></Input>
+              <Input v-model="form.originallink" placeholder="请输入原文链接" style="width:800px;"></Input>
             </FormItem>
           </Form>
         </Col>
@@ -129,7 +129,7 @@
 import EditorMd from '@/components/EditorMd'
 import EditorHtml from '@/components/EditorHtml'
 import {mapGetters} from 'vuex'
-import {file, upfile, delfile} from '@/config'
+import {file, upfile, delfile, addArticle} from '@/config'
 import axios from 'axios'
 export default {
   metaInfo: {
@@ -153,18 +153,23 @@ export default {
       file: file,
       upfile: upfile,
       platform: 'phone',
+      result: {
+        recommend: false,
+        fine: false,
+        original: false
+      },
       form: {
         title: '',
         summary: '',
         cover: '',
         author: '',
-        content: '',
+        description: '',
         recommend: true,
         tags: [],
-        digest: true,
+        fine: true,
         category: '前端',
         original: false,
-        link: ''
+        originallink: ''
       }
     }
   },
@@ -225,10 +230,47 @@ export default {
       })
     },
     publish () {
-      console.log(this.form)
+      let tag = ''
+      for (var i in this.result) {
+        if (typeof this.result[i] === 'boolean') {
+          if (this.result[i]) {
+            this.form[i] = 1
+          } else {
+            this.form[i] = 0
+          }
+        }
+      }
+      this.form.tags.forEach((item, index) => {
+        tag += item + ','
+      })
+      this.form.tags = tag
+      // axios({
+      //   url: addArticle,
+      //   methods: 'get',
+      //   params: this.form
+      // }).then(res => {
+      //   console.log(res)
+      // })
+      var formdata = new FormData()
+      for (var j in this.form) {
+        formdata.append(j, this.form[j])
+      }
+      axios({
+        url: addArticle,
+        method: 'post',
+        data: formdata,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).then(res => {
+        if (res.data) {
+          this.$Message.success('文章发布成功！')
+          this.$router.replace('/article')
+        }
+      })
     },
     watchContent (v, o) {
-      this.form.content = v
+      this.form.description = v
     }
   },
   created () {
