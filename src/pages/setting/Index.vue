@@ -19,7 +19,10 @@
           <h2 class="sub-title">基本信息</h2>
           <edit-info style="width:50%;margin-top:20px;"/>
         </TabPane>
-        <TabPane label="个性化设置" name="name2">
+        <TabPane label="分类设置" name="name2">
+          <edit-user-category/>
+          <edit-article-category/>
+          <edit-project-category/>
         </TabPane>
         <TabPane label="账户安全" name="name3">标签三的内容</TabPane>
         <TabPane label="消息设置" name="name4">标签三的内容</TabPane>
@@ -31,13 +34,19 @@
 <script>
   import EditFace from '@/components/EditFace'
   import EditInfo from '@/components/EditInfo'
+  import EditUserCategory from '@/components/EditUserCategory'
+  import editArticleCategory from '@/components/editArticleCategory'
+  import EditProjectCategory from '@/components/EditProjectCategory'
   export default {
     metaInfo: {
       title: '综合设置'
     },
     components: {
-      'edit-face': EditFace,
-      'edit-info': EditInfo
+      EditFace,
+      EditInfo,
+      EditUserCategory,
+      EditProjectCategory,
+      editArticleCategory
     },
     computed: {
     }

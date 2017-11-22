@@ -98,3 +98,19 @@ button:focus{
   background:url(../login_bg.jpg) no-repeat center center;
   background-size: 100% 100%;;
 }
+.title{
+  font-size:18px;
+  position: relative;
+  padding-left:15px;
+}
+.title:before{
+  content: '';
+  display:inline-block;
+  width:3px;
+  height:18px;
+  background:#2D8CF0;
+  position:absolute;
+  left:0;
+  top:50%;
+  margin-top:-9px;
+}
