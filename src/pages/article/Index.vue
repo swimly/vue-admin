@@ -49,6 +49,11 @@
         }).then(res => {
           console.log(res)
           this.list = res.data.data
+        }).catch(err => {
+          this.$Notice.error({
+            title: '连接服务器出错！',
+            desc: '服务器未开启或者服务器崩溃，请联系管理员进行修复！'
+          })
         })
       }
     }

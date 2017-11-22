@@ -69,6 +69,14 @@
               this.$Message.error(res.data.msg)
               this.$Loading.error()
             }
+          }).catch(err => {
+            this.$Notice.error({
+              title: '连接服务器出错！',
+              desc: '服务器未开启或者服务器崩溃，请联系管理员进行修复！'
+            })
+            this.loading = !this.loading
+            this.$Loading.error()
+            console.log(err)
           })
         }
         // this.$router.replace('/home')
