@@ -53,6 +53,7 @@
 </template>
 <script>
   import {categoryUserAdd, categoryUser, categoryuserDel} from '@/config'
+  import {mapMutations} from 'vuex'
   import axios from 'axios'
   export default {
     data () {
@@ -78,6 +79,9 @@
       this.getList()
     },
     methods: {
+      ...mapMutations({
+        updateUserCategory: 'updateUserCategory'
+      }),
       format (val) {
         return val
       },
@@ -88,6 +92,7 @@
         }).then(res => {
           console.log(res)
           this.list = res.data
+          this.updateUserCategory(res.data)
         })
       },
       submit () {

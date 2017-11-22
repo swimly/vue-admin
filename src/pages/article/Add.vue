@@ -37,13 +37,7 @@
             </FormItem>
             <FormItem label="类别：">
               <RadioGroup v-model="form.category" type="button">
-                <Radio label="视觉设计"></Radio>
-                <Radio label="平面设计"></Radio>
-                <Radio label="动画视频"></Radio>
-                <Radio label="前端"></Radio>
-                <Radio label="团队活动"></Radio>
-                <Radio label="招贤纳士"></Radio>
-                <Radio label="其他"></Radio>
+                <Radio :label="item.name" v-for="(item, index) in articleCategory" :key="index"></Radio>
               </RadioGroup>
             </FormItem>
             <FormItem label="标签：">
@@ -141,7 +135,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      article: 'article'
+      article: 'article',
+      articleCategory: 'articleCategory'
     })
   },
   data () {

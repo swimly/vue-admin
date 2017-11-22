@@ -40,11 +40,7 @@
       <Col span="24">
         <FormItem label="身份：">
           <RadioGroup v-model="form.degree" type="button">
-            <Radio label="普通用户"></Radio>
-            <Radio label="普通会员"></Radio>
-            <Radio label="终身会员"></Radio>
-            <Radio label="管理员"></Radio>
-            <Radio label="超级管理员"></Radio>
+            <Radio :label="item.name" v-for="(item, index) in userCategory" :key="index"></Radio>
           </RadioGroup>
         </FormItem>
       </Col>
@@ -59,6 +55,7 @@
   </Form>
 </template>
 <script>
+  import {mapGetters} from 'vuex'
   export default {
     data () {
       return {
@@ -72,6 +69,11 @@
           mode: '邮箱注册'
         }
       }
+    },
+    computed: {
+      ...mapGetters({
+        userCategory: 'userCategory'
+      })
     },
     methods: {
       submit () {

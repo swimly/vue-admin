@@ -4,6 +4,8 @@ Vue.use(Vuex)
 const state = {
   loading: false,
   articleContent: '',
+  articleCategory: [],
+  userCategory: [],
   userInfo: {
     face: '',
     name: '',
@@ -25,6 +27,12 @@ const getters = {
   },
   article (state) {
     return state.articleContent
+  },
+  articleCategory (state) {
+    return state.articleCategory
+  },
+  userCategory (state) {
+    return state.userCategory
   }
 }
 const mutations = {
@@ -39,6 +47,12 @@ const mutations = {
   },
   updateArticle (state, param) {
     state.articleContent = param
+  },
+  updateArticleCategory (state, param) {
+    state.articleCategory = param
+  },
+  updateUserCategory (state, param) {
+    state.userCategory = param
   }
 }
 const actions = {}
