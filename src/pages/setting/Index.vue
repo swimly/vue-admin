@@ -18,6 +18,7 @@
           <edit-face/>
           <h2 class="sub-title">基本信息</h2>
           <edit-info style="width:50%;margin-top:20px;"/>
+          <h2 class="sub-title">邮箱</h2>
         </TabPane>
         <TabPane label="分类设置" name="category">
           <edit-user-category/>

@@ -24,3 +24,6 @@
 ## 添加用户分类，文章分类同步数据库
 <img src="./screenshots/8.png" alt="">
 <img src="./screenshots/9.png" alt="">
+
+## 添加锁定功能
+<img src="./screenshots/10.png" alt="">
