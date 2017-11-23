@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Row>
+    <Row style="margin-top:20px;">
       <Col span="12">
         <h2 class="title">文章分类</h2>
       </Col>

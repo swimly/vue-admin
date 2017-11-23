@@ -56,7 +56,7 @@
   import Face from '@/components/Face'
   import HeadInfo from '@/components/HeadInfo'
   import {mapMutations} from 'vuex'
-  import {categoryArticle, categoryUser} from '@/config'
+  import {categoryArticle, categoryUser, categoryGroup} from '@/config'
   import axios from 'axios'
   export default {
     data () {
@@ -86,6 +86,7 @@
         this.updateUserInfo(JSON.parse(this.$cookie.get('userInfo')))
         this.getUserCategory()
         this.getArticleCategory()
+        this.getGroupCategory()
       }
       // console.log(this.$cookie.get('userInfo'))
     },
@@ -104,6 +105,15 @@
           methods: 'get'
         }).then(res => {
           this.updateUserCategory(res.data)
+        })
+      },
+      getGroupCategory () {
+        axios({
+          url: categoryGroup,
+          methods: 'get'
+        }).then(res => {
+          this.updateGroupCategory(res.data)
+          console.log(res.data, 100)
         })
       },
       setTime () {
@@ -127,7 +137,8 @@
       ...mapMutations({
         updateUserInfo: 'updateUserInfo',
         updateArticleCategory: 'updateArticleCategory',
-        updateUserCategory: 'updateUserCategory'
+        updateUserCategory: 'updateUserCategory',
+        updateGroupCategory: 'updateGroupCategory'
       })
     },
     watch: {

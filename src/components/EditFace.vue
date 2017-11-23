@@ -2,7 +2,7 @@
   <div class='crop'>
     <Row>
       <Col span='24'>
-        <img class='face v-m' :src='file + userInfo.face' alt=''>
+        <img class='face v-m' :src='file + userInfo.face' alt='' v-if="userInfo.face">
         <Button type='ghost' class='v-m' @click='modal = true'>设置头像</Button>
       </Col>
     </Row>

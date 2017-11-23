@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <img :src="file + userInfo.face" alt="">
+    <img :src="file + userInfo.face" alt="" v-if="userInfo.face">
   </div>
 </template>
 <script>

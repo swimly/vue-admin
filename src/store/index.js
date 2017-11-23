@@ -6,6 +6,7 @@ const state = {
   articleContent: '',
   articleCategory: [],
   userCategory: [],
+  groupCategory: [],
   userInfo: {
     face: '',
     name: '',
@@ -33,6 +34,9 @@ const getters = {
   },
   userCategory (state) {
     return state.userCategory
+  },
+  groupCategory (state) {
+    return state.groupCategory
   }
 }
 const mutations = {
@@ -53,6 +57,9 @@ const mutations = {
   },
   updateUserCategory (state, param) {
     state.userCategory = param
+  },
+  updateGroupCategory (state, param) {
+    state.groupCategory = param
   }
 }
 const actions = {}
