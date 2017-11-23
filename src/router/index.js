@@ -59,6 +59,13 @@ const route = new Router({
       }, {
         path: '/setting',
         name: 'setting',
+        redirect: '/setting/info',
+        components: {
+          content: resolve => require(['@/pages/setting/Index'], resolve)
+        }
+      }, {
+        path: '/setting/:category',
+        name: 'settingCategory',
         components: {
           content: resolve => require(['@/pages/setting/Index'], resolve)
         }

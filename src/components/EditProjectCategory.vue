@@ -16,7 +16,10 @@
           <span class="icon"></span>
           <h2 class="name" :style="'color:' + item.color">{{item.name}} <span class="count" v-if="item.children">({{item.children.length}})</span><span class="count" v-if="!item.children">(0)</span></h2>
           <div class="son">
-            <Tag type="dot" closable v-for="(item, index) in item.children" :key="index" @on-close="delSon(item)">{{item.name}}</Tag>
+            <Tag type="dot" class="none" closable v-for="(item, index) in item.children" :key="index" @on-close="delSon(item)">
+              <span class="circle" :style="'background:' + item.color"></span>
+              <span>{{item.name}}</span>
+            </Tag>
             <Button type="ghost" @click="addSon(item)" icon="ios-plus-empty">添加分类</Button>
           </div>
         </Card>

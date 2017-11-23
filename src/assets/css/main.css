@@ -120,3 +120,20 @@ button:focus{
   text-indent:2em;
   line-height:2;
 }
+.ivu-tag-text span{
+  display:inline-block;
+  vertical-align: middle;
+  height:12px;
+  line-height:12px;
+}
+.ivu-tag-text .circle{
+  display:inline-block;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  margin-right:5px;
+  margin-top:-1px;
+}
+.none .ivu-tag-dot-inner{
+  display:none;
+}

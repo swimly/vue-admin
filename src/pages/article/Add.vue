@@ -39,6 +39,9 @@
               <RadioGroup v-model="form.category" type="button">
                 <Radio :label="item.name" v-for="(item, index) in articleCategory" :key="index"></Radio>
               </RadioGroup>
+              <Tooltip content="前往设置文章分类" style="margin-left:20px;" placement="right">
+              <router-link to="/setting/category">设置</router-link>
+            </Tooltip>
             </FormItem>
             <FormItem label="标签：">
               <Tag type="dot" closable v-for="(item, index) in form.tags" :key="index" @on-close="delTag(index)">{{item}}</Tag>

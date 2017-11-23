@@ -1,6 +1,6 @@
 <template>
-  <div class="view">
-    <Row class="head-inner">
+  <div class="view" style="padding-top:40px;">
+    <Row class="head-inner" style="height:40px !important;margin-top:-40px;">
       <Col span="12">
         <Breadcrumb>
           <BreadcrumbItem to="/home">首页</BreadcrumbItem>
@@ -11,15 +11,15 @@
       </Col>
     </Row>
     <!-- <h1 class="title">账户设置</h1> -->
-    <div class="panel">
-      <Tabs value="name1">
-        <TabPane label="基本信息" name="name1">
+    <div class="panel" style="padding:0;padding-left:10px;">
+      <Tabs :value="current" @on-click="changeTab" class="full-tab">
+        <TabPane label="基本信息" name="info">
           <h2 class="sub-title">头像</h2>
           <edit-face/>
           <h2 class="sub-title">基本信息</h2>
           <edit-info style="width:50%;margin-top:20px;"/>
         </TabPane>
-        <TabPane label="分类设置" name="name2">
+        <TabPane label="分类设置" name="category">
           <edit-user-category/>
           <edit-article-category/>
           <edit-project-category/>
@@ -49,6 +49,19 @@
       editArticleCategory
     },
     computed: {
+    },
+    data () {
+      return {
+        current: ''
+      }
+    },
+    created () {
+      this.current = this.$route.params.category
+    },
+    methods: {
+      changeTab (name) {
+        this.$router.replace('/setting/' + name)
+      }
     }
   }
 </script>
@@ -63,6 +76,20 @@
 }
 .view .ivu-tabs .ivu-tabs-tabpane{
   padding:10px;
+}
+.full-tab{
+  height:100%;
+  padding-top:44px;
+}
+.full-tab .ivu-tabs-bar{
+  margin-top:-44px;
+}
+.full-tab .ivu-tabs-content{
+  height:100%;
+}
+.full-tab .ivu-tabs-tabpane{
+  height:100%;
+  overflow:auto;
 }
 </style>
 

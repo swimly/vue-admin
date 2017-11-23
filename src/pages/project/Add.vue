@@ -26,19 +26,16 @@
           <Input v-model="form.title" placeholder="Enter something..."></Input>
         </FormItem>
         <FormItem label="组别：">
-          <RadioGroup v-model="form.category" type="button">
-            <Radio label="平面设计"></Radio>
-            <Radio label="前端开发"></Radio>
-            <Radio label="动画制作"></Radio>
-            <Radio label="视频剪辑"></Radio>
+          <RadioGroup v-model="form.category" type="button" @on-change="searchSon">
+            <Radio :label="item.name" v-for="(item, index) in groupCategory" :key="index"></Radio>
           </RadioGroup>
+          <Tooltip content="前往设置项目组" style="margin-left:20px;" placement="right">
+            <router-link to="/setting/category">设置</router-link>
+          </Tooltip>
         </FormItem>
-        <FormItem label="类别：">
+        <FormItem label="类别：" v-if="category">
           <RadioGroup v-model="form.category" type="button">
-            <Radio label="手机app"></Radio>
-            <Radio label="网站web"></Radio>
-            <Radio label="系统"></Radio>
-            <Radio label="其他"></Radio>
+            <Radio :label="item.name" v-for="(item, index) in category" :key="index"></Radio>
           </RadioGroup>
         </FormItem>
         <FormItem label="标签：">
@@ -89,6 +86,7 @@
   import {file, upfile, delfile} from '@/config'
   import EditorMd from '@/components/EditorMd'
   import EditorHtml from '@/components/EditorHtml'
+  import {mapGetters} from 'vuex'
   import axios from 'axios'
   export default {
     metaInfo: {
@@ -98,6 +96,11 @@
       EditorMd,
       EditorHtml
     },
+    computed: {
+      ...mapGetters({
+        groupCategory: 'groupCategory'
+      })
+    },
     data () {
       return {
         tagValue: '',
@@ -105,6 +108,7 @@
         file: file,
         upfile: upfile,
         model: 'markdown',
+        category: undefined,
         form: {
           title: '',
           category: 'app设计',
@@ -173,6 +177,15 @@
         this.$Notice.error({
           title: '文件上传失败！',
           desc: '由于服务器连接失败，请联系网站管理员！ '
+        })
+      },
+      searchSon (name) {
+        console.log(name)
+        this.groupCategory.map((item, index) => {
+          if (item.name === name) {
+            this.category = item.children
+            console.log(this.category)
+          }
         })
       }
     }
