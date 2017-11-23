@@ -3,6 +3,7 @@
     <Row>
       <Col span="12">欢迎<span class="important">{{userInfo.name || userInfo.email || userInfo.phone}}</span>登录本系统</Col>
       <Col span="12" style="text-align:right;">
+        <span class="iconfont icon-peise"></span>
         <span class="iconfont icon-xiaoxi"></span>
         <span class="iconfont icon-suoding" title="锁定" @click="handleLock"></span>
         <span class="iconfont icon-shezhi"></span>

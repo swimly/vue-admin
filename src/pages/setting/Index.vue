@@ -25,7 +25,9 @@
           <edit-article-category/>
           <edit-project-category/>
         </TabPane>
-        <TabPane label="账户安全" name="name3">标签三的内容</TabPane>
+        <TabPane label="主题设置" name="theme">
+          <edit-theme/>
+        </TabPane>
         <TabPane label="消息设置" name="name4">标签三的内容</TabPane>
         <TabPane label="应用管理" name="name5">标签三的内容</TabPane>
       </Tabs>
@@ -33,11 +35,12 @@
   </div>
 </template>
 <script>
-  import EditFace from '@/components/EditFace'
-  import EditInfo from '@/components/EditInfo'
-  import EditUserCategory from '@/components/EditUserCategory'
-  import editArticleCategory from '@/components/editArticleCategory'
-  import EditProjectCategory from '@/components/EditProjectCategory'
+  import EditFace from '@/pages/setting/EditFace'
+  import EditInfo from '@/pages/setting/EditInfo'
+  import EditUserCategory from '@/pages/setting/EditUserCategory'
+  import editArticleCategory from '@/pages/setting/editArticleCategory'
+  import EditProjectCategory from '@/pages/setting/EditProjectCategory'
+  import EditTheme from '@/pages/setting/EditTheme'
   export default {
     metaInfo: {
       title: '综合设置'
@@ -47,7 +50,8 @@
       EditInfo,
       EditUserCategory,
       EditProjectCategory,
-      editArticleCategory
+      editArticleCategory,
+      EditTheme
     },
     computed: {
     },

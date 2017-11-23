@@ -93,11 +93,6 @@ button:focus{
   background:url(../mac.png) no-repeat center center;
   background-size:contain;
 }
-.login{
-  height:100%;
-  background:url(../login_bg.jpg) no-repeat center center;
-  background-size: 100% 100%;;
-}
 .title{
   font-size:18px;
   position: relative;
@@ -136,4 +131,33 @@ button:focus{
 }
 .none .ivu-tag-dot-inner{
   display:none;
+}
+.ivu-menu-dark{
+  background:none !important;
+}
+
+/* 主题 */
+.default .aside{
+  background:#495060;
+}
+.default .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu),
+.default .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu):hover,
+.default .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu),
+.default .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu):hover,
+.default .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item:hover{
+  background:#363E4F;
+  color:#fff;
+  border-right-color: #363E4F;
+}
+.primary .aside{
+  background:#2D8CF0;
+}
+.primary .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu),
+.primary .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu):hover,
+.primary .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu),
+.primary .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu):hover,
+.primary .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item:hover{
+  background:#155DA7;
+  color:#fff;
+  border-right-color: #155DA7;
 }

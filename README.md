@@ -27,3 +27,6 @@
 
 ## 添加锁定功能
 <img src="./screenshots/10.png" alt="">
+
+## 添加主题切换
+<img src="./screenshots/11.png" alt="">

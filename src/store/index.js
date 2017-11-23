@@ -7,6 +7,9 @@ const state = {
   articleCategory: [],
   userCategory: [],
   groupCategory: [],
+  theme: {
+    color: '495060'
+  },
   userInfo: {
     face: '',
     name: '',
@@ -16,7 +19,8 @@ const state = {
     email: '',
     QQ: '',
     domicile: '',
-    birthplace: ''
+    birthplace: '',
+    theme: ''
   }
 }
 const getters = {
@@ -37,6 +41,9 @@ const getters = {
   },
   groupCategory (state) {
     return state.groupCategory
+  },
+  theme (state) {
+    return state.theme
   }
 }
 const mutations = {
@@ -60,6 +67,9 @@ const mutations = {
   },
   updateGroupCategory (state, param) {
     state.groupCategory = param
+  },
+  updateTheme (state, param) {
+    state.theme = param
   }
 }
 const actions = {}

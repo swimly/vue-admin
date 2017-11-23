@@ -99,4 +99,9 @@
   font-size:22px;
   font-weight:normal;margin-bottom:30px;
 }
+.login{
+  height:100%;
+  background:url(../../assets/login_bg.jpg) no-repeat center center;
+  background-size: 100% 100%;
+}
 </style>

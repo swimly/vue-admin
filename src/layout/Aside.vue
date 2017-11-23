@@ -1,5 +1,5 @@
 <template>
-  <div class="vertical">
+  <div :class="'vertical ' + userInfo.theme">
     <Row>
       <Col span="3" class="aside">
         <Face/>
@@ -20,21 +20,6 @@
             <Icon type="ios-people"></Icon>
             项目管理
           </MenuItem>
-          <!-- <Submenu name="3">
-            <template slot="title">
-              <Icon type="stats-bars"></Icon>
-              统计分析
-            </template>
-            <MenuGroup title="使用">
-              <MenuItem name="3-1">新增和启动</MenuItem>
-              <MenuItem name="3-2">活跃分析</MenuItem>
-              <MenuItem name="3-3">时段分析</MenuItem>
-            </MenuGroup>
-            <MenuGroup title="留存">
-              <MenuItem name="3-4">用户留存</MenuItem>
-              <MenuItem name="3-5">流失用户</MenuItem>
-            </MenuGroup>
-          </Submenu> -->
           <MenuItem name="/setting">
             <Icon type="settings"></Icon>
             综合设置
@@ -55,7 +40,7 @@
 <script>
   import Face from '@/components/Face'
   import HeadInfo from '@/components/HeadInfo'
-  import {mapMutations} from 'vuex'
+  import {mapMutations, mapGetters} from 'vuex'
   import {categoryArticle, categoryUser, categoryGroup} from '@/config'
   import axios from 'axios'
   export default {
@@ -64,12 +49,18 @@
         active: '/home',
         count: 0,
         time: 30,
+        theme: '',
         timer: null
       }
     },
     components: {
       Face,
       HeadInfo
+    },
+    computed: {
+      ...mapGetters({
+        userInfo: 'userInfo'
+      })
     },
     mounted () {
       document.onmousemove = (e) => {
@@ -158,9 +149,6 @@
 }
 .vertical .ivu-col{
   height:100%;
-}
-.vertical .aside{
-  background:#495060;
 }
 .content{
   box-sizing:border-box;
