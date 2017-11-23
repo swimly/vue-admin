@@ -2,7 +2,7 @@
   <div>
     <Row style="margin-top:20px;">
       <Col span="12">
-        <h2 class="title">用户等级</h2>
+        <h2 class="title">用户等级 <span class="count">({{userCategory.length}})</span></h2>
       </Col>
       <Col span="12" style="text-align:right;">
         <Button type="ghost" shape="circle" icon="plus" @click="modal = true"></Button>
@@ -11,7 +11,7 @@
     <p class='tip'>配置用户等级，不同的会员身份享有不同的特权，从左到右，权限越大，享有的特权越多！</p>
     <div class="category-content">
       <Row>
-        <Col span="4" v-for="(item, index) in list" :key="index">
+        <Col span="4" v-for="(item, index) in userCategory" :key="index">
           <Card><span class="dot" :style="'background-color:' + item.color"></span><span class="v-m">{{item.name}}</span><Button type="text" icon="close" slot="extra" @click="del(item)"></Button></Card>
         </Col>
       </Row>
@@ -53,12 +53,11 @@
 </template>
 <script>
   import {categoryUserAdd, categoryUser, categoryuserDel} from '@/config'
-  import {mapMutations} from 'vuex'
+  import {mapMutations, mapGetters} from 'vuex'
   import axios from 'axios'
   export default {
     data () {
       return {
-        list: [],
         modal: false,
         delModal: false,
         current: {
@@ -74,9 +73,13 @@
         }
       }
     },
+    computed: {
+      ...mapGetters({
+        userCategory: 'userCategory'
+      })
+    },
     created () {
       this.form.uId = JSON.parse(this.$cookie.get('userInfo')).uId
-      this.getList()
     },
     methods: {
       ...mapMutations({
@@ -91,7 +94,6 @@
           methods: 'get'
         }).then(res => {
           console.log(res)
-          this.list = res.data
           this.updateUserCategory(res.data)
         })
       },

@@ -114,3 +114,9 @@ button:focus{
   top:50%;
   margin-top:-9px;
 }
+.ivu-modal-body p{
+  font-size:14px;
+  color:#666;
+  text-indent:2em;
+  line-height:2;
+}
