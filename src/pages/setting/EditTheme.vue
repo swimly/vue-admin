@@ -2,7 +2,7 @@
   <div>
     <Row style="margin:0 -10px;">
       <Col span="3" v-for="(item, index) in theme" :key="index" style="padding:10px;">
-        <Card :style="'background:#' + item.color" class="theme-item">
+        <Card :style="'background:' + item.color" class="theme-item">
           <div @click="setTheme(item)" style="height:200px;">
             <span class="iconfont icon-selected" v-if="current === item.name"></span>
             <h2 class="name">{{item.name}}</h2>
@@ -25,38 +25,45 @@
       title="新增主题"
       @on-ok="handleAdd"
     >
-      <Form :model="form" :label-width="60">
+      <Form :model="form" :label-width="75">
         <FormItem label="名称：">
           <Input v-model="form.name" placeholder="名称必须为英文，且长度不超过10个字符！"/>
         </FormItem>
-        <FormItem label="颜色：">
-          <ColorPicker v-model="form.color" />
-          <Input v-model="form.color" style="width:80px;"/>
-        </FormItem>
+        <Row>
+          <Col span="12">
+            <FormItem label="颜色：">
+              <ColorPicker v-model="form.color" />
+              <Input v-model="form.color" style="width:80px;"/>
+            </FormItem>
+          </Col>
+          <Col span="12">
+            <FormItem label="选中颜色：">
+              <ColorPicker v-model="form.activecolor" />
+              <Input v-model="form.activecolor" style="width:80px;"/>
+            </FormItem>
+          </Col>
+        </Row>
       </Form>
     </Modal>
   </div>
 </template>
 <script>
   import {mapGetters, mapMutations} from 'vuex'
-  import {updateTheme, addTheme, theme} from '@/config'
+  import {updateTheme, addTheme, theme, file} from '@/config'
   import axios from 'axios'
   export default {
     data () {
       return {
         addModal: false,
-        theme: [{
-          name: 'default',
-          color: '#495060'
-        }, {
-          name: 'primary',
-          color: '#2D8CF0'
-        }],
+        theme: [],
         current: 'default',
+        document: '',
+        file: file,
         form: {
           uId: '',
           name: '',
-          color: ''
+          color: '',
+          activecolor: ''
         }
       }
     },
@@ -64,6 +71,9 @@
       ...mapGetters({
         userInfo: 'userInfo'
       })
+    },
+    mounted () {
+      this.document = document
     },
     created () {
       this.current = JSON.parse(this.$cookie.get('userInfo')).theme
@@ -82,6 +92,11 @@
           this.$cookie.set('userInfo', JSON.stringify(res.data))
           this.updateUserInfo(res.data)
           this.current = res.data.theme
+          var cssFile = this.document.createElement('link')
+          cssFile.setAttribute('rel', 'stylesheet')
+          cssFile.setAttribute('type', 'text/css')
+          cssFile.setAttribute('href', this.file + item.name + '.css')
+          this.document.getElementsByTagName('head')[0].appendChild(cssFile)
         })
       },
       getTheme () {

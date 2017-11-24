@@ -41,16 +41,25 @@
   import Face from '@/components/Face'
   import HeadInfo from '@/components/HeadInfo'
   import {mapMutations, mapGetters} from 'vuex'
-  import {categoryArticle, categoryUser, categoryGroup} from '@/config'
+  import {categoryArticle, categoryUser, categoryGroup, themecontent, file} from '@/config'
   import axios from 'axios'
   export default {
+    metaInfo () {
+      return {
+        link: [{
+          rel: 'stylesheet', href: this.file + this.css
+        }]
+      }
+    },
     data () {
       return {
         active: '/home',
         count: 0,
         time: 30,
         theme: '',
-        timer: null
+        timer: null,
+        file: file,
+        css: ''
       }
     },
     components: {
@@ -73,6 +82,7 @@
         this.$Message.warning('非法进入，您尚未登录本系统，请先登录！')
         this.$router.replace('/login')
       } else {
+        this.getThemeContent()
         this.change()
         this.updateUserInfo(JSON.parse(this.$cookie.get('userInfo')))
         this.getUserCategory()
@@ -80,6 +90,7 @@
         this.getGroupCategory()
       }
       // console.log(this.$cookie.get('userInfo'))
+      console.log(this.userInfo.uId, 'userInfo')
     },
     methods: {
       getArticleCategory () {
@@ -104,7 +115,15 @@
           methods: 'get'
         }).then(res => {
           this.updateGroupCategory(res.data)
-          console.log(res.data, 100)
+        })
+      },
+      getThemeContent () {
+        axios({
+          url: themecontent + JSON.parse(this.$cookie.get('userInfo')).theme,
+          methods: 'get'
+        }).then(res => {
+          console.log(res, 'css')
+          this.css = res.data.css
         })
       },
       setTime () {

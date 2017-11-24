@@ -137,7 +137,7 @@ button:focus{
 }
 
 /* 主题 */
-.default .aside{
+.aside{
   background:#495060;
 }
 .default .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu),
@@ -149,15 +149,10 @@ button:focus{
   color:#fff;
   border-right-color: #363E4F;
 }
-.primary .aside{
-  background:#2D8CF0;
+.ivu-menu .ivu-icon{
+  color:rgba(255,255,255,0.7) !important;
+  font-size:20px;
 }
-.primary .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu),
-.primary .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu):hover,
-.primary .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu),
-.primary .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu):hover,
-.primary .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item:hover{
-  background:#155DA7;
-  color:#fff;
-  border-right-color: #155DA7;
+.ivu-menu .ivu-menu-item-active .ivu-icon{
+  color:#fff !important;
 }
