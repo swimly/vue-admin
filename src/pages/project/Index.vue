@@ -12,17 +12,37 @@
       </Col>
     </Row>
     <div class="panel">
+      <div class="text">{{list}}</div>
     </div>
   </div>
 </template>
 <script>
+  import {projectServer} from '@/config'
+  import axios from 'axios'
   export default {
     metaInfo: {
       title: '项目管理'
     },
+    data () {
+      return {
+        list: []
+      }
+    },
+    created () {
+      this.getList()
+    },
     methods: {
       jump (url) {
         this.$router.push(url)
+      },
+      getList () {
+        axios({
+          url: projectServer,
+          methods: 'get'
+        }).then(res => {
+          console.log(res)
+          this.list = res.data
+        })
       }
     }
   }

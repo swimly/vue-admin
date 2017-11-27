@@ -26,7 +26,9 @@
     },
     data () {
       return {
-        info: {},
+        info: {
+          title: '文章管理'
+        },
         file: file
       }
     },

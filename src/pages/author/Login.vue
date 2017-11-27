@@ -28,8 +28,8 @@
         login: login,
         loading: false,
         form: {
-          username: '18827078587',
-          password: '122514',
+          username: '',
+          password: '',
           status: 1
         }
       }

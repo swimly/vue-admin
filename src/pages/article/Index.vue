@@ -14,7 +14,7 @@
     <div class="panel">
       <ul class="article-list">
         <li v-for="(item, index) in list" :key="index">
-          <h2><router-link :to="'/articles/' + item.aId">{{item.title}}</router-link></h2>
+          <h2><router-link :to="'/article/detail/' + item.aId">{{item.title}}</router-link></h2>
           <img :src="file + item.cover" alt="">
           <p class="summary">{{item.summary}}</p>
         </li>

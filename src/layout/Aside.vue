@@ -5,28 +5,28 @@
         <Face/>
         <Menu mode="vertical" width="auto" :theme="'dark'" :active-name="active" @on-select="jump">
           <MenuItem name="/home">
-            <Icon type="ios-paper"></Icon>
-            首页
+            <Icon type="ios-home-outline" class="v-m"></Icon>
+            <span class="v-m">首页</span>
           </MenuItem>
           <MenuItem name="/user">
-            <Icon type="ios-people"></Icon>
-            用户管理
+            <Icon type="ios-people-outline" class="v-m"></Icon>
+            <span class="v-m">用户管理</span>
           </MenuItem>
           <MenuItem name="/article">
-            <Icon type="ios-people"></Icon>
-            文章管理
+            <Icon type="ios-bookmarks-outline" class="v-m"></Icon>
+            <span class="v-m">文章管理</span>
           </MenuItem>
           <MenuItem name="/project">
-            <Icon type="ios-people"></Icon>
-            项目管理
+            <Icon type="ios-analytics-outline" class="v-m"></Icon>
+            <span class="v-m">项目管理</span>
           </MenuItem>
           <MenuItem name="/setting">
-            <Icon type="settings"></Icon>
-            综合设置
+            <Icon type="ios-settings" class="v-m"></Icon>
+            <span class="v-m">综合设置</span>
           </MenuItem>
           <MenuItem name="/count">
-            <Icon type="ios-people"></Icon>
-            统计
+            <Icon type="ios-speedometer-outline" class="v-m"></Icon>
+            <span class="v-m">统计</span>
           </MenuItem>
         </Menu>
       </Col>
@@ -172,4 +172,5 @@
 .content{
   box-sizing:border-box;
 }
+.ivu-menu-item span{font-size:12px;}
 </style>
