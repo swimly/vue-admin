@@ -13,11 +13,20 @@
     </Row>
     <div class="panel">
       <div class="text">{{list}}</div>
+      <Row v-if="list">
+        <Col span="4" v-for="(item, index) in list" :key="index">
+          <div class="project">
+            <span class="img:s">
+              <img :src="file + item.cover" alt="">
+            </span>
+          </div>
+        </Col>
+      </Row>
     </div>
   </div>
 </template>
 <script>
-  import {projectServer} from '@/config'
+  import {projectServer, file} from '@/config'
   import axios from 'axios'
   export default {
     metaInfo: {
@@ -25,7 +34,8 @@
     },
     data () {
       return {
-        list: []
+        list: null,
+        file: file
       }
     },
     created () {
@@ -41,7 +51,7 @@
           methods: 'get'
         }).then(res => {
           console.log(res)
-          this.list = res.data
+          this.list = res.data.data
         })
       }
     }

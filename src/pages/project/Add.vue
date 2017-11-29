@@ -55,7 +55,7 @@
             <Button type="primary" icon="ios-cloud-upload-outline">选择封面</Button>
           </Upload>
         </FormItem>
-        <FormItem>
+        <FormItem label="内容：">
           <editor-md v-if="form.mode === 'markdown'"/>
           <editor-html v-if="form.mode === '富文本'"/>
         </FormItem>
@@ -112,7 +112,7 @@
         form: {
           name: '',
           group: '',
-          mode: 'markdown',
+          mode: '富文本',
           category: 'app设计',
           tag: [],
           cover: '',
@@ -223,6 +223,7 @@
       },
       watchContent (v, o) {
         this.form.content = v
+        console.log(v)
       }
     },
     watch: {
