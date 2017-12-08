@@ -139,7 +139,8 @@ export default {
   computed: {
     ...mapGetters({
       article: 'article',
-      articleCategory: 'articleCategory'
+      articleCategory: 'articleCategory',
+      markdown: 'markdown'
     })
   },
   data () {
@@ -167,7 +168,8 @@ export default {
         fine: true,
         category: '前端',
         original: false,
-        originallink: ''
+        originallink: '',
+        md: ''
       }
     }
   },
@@ -186,8 +188,8 @@ export default {
       const exist = this.form.tags.indexOf(this.tagValue.replace(/\s+/g, '')) < 0
       if (this.tagValue.replace(/\s+/g, '').length === 0) {
         this.$Message.error('不能添加空标签！')
-      } else if (this.tagValue.replace(/\s+/g, '').length > 6) {
-        this.$Message.error('每个标签不能超过6个文字！')
+      } else if (this.tagValue.replace(/\s+/g, '').length > 12) {
+        this.$Message.error('每个标签不能超过12个字符！')
       } else {
         if (exist) {
           this.form.tags.push(this.tagValue.replace(/\s+/g, ''))
@@ -203,8 +205,8 @@ export default {
     },
     inputBlur () {
       if (this.tagValue.replace(/\s+/g, '')) {
-        if (this.tagValue.length > 6) {
-          this.$Message.error('每个标签不能超过6个文字！')
+        if (this.tagValue.length > 12) {
+          this.$Message.error('每个标签不能超过12个字符！')
         } else {
           this.form.tags.push(this.tagValue.replace(/\s+/g, ''))
           this.taging = false
@@ -253,6 +255,7 @@ export default {
       for (var j in this.form) {
         formdata.append(j, this.form[j])
       }
+      console.log(this.form)
       axios({
         url: addArticle,
         method: 'post',
@@ -264,11 +267,30 @@ export default {
         if (res.data) {
           this.$Message.success('文章发布成功！')
           this.$router.replace('/article')
+          this.form = {
+            title: '',
+            summary: '',
+            cover: '',
+            author: '',
+            description: '',
+            recommend: true,
+            tags: [],
+            fine: true,
+            category: '前端',
+            original: false,
+            originallink: '',
+            md: ''
+          }
         }
       })
     },
     watchContent (v, o) {
       this.form.description = v
+      console.log(v)
+    },
+    watchMarkdown (v, o) {
+      this.form.md = v
+      console.log(v)
     }
   },
   created () {
@@ -276,7 +298,8 @@ export default {
   destroyed () {
   },
   watch: {
-    'article': 'watchContent'
+    'article': 'watchContent',
+    'markdown': 'watchMarkdown'
   }
 }
 </script>

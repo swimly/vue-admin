@@ -39,9 +39,11 @@
     methods: {
       setValue (v) {
         this.updateArticle(this.simplemde.markdown(v))
+        this.updateMardown(v)
       },
       ...mapMutations({
-        updateArticle: 'updateArticle'
+        updateArticle: 'updateArticle',
+        updateMardown: 'updateMardown'
       })
     }
   }

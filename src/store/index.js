@@ -3,10 +3,11 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const state = {
   loading: false,
-  articleContent: '',
-  articleCategory: [],
-  userCategory: [],
-  groupCategory: [],
+  articleContent: '', // 文章内容
+  mdContent: '', // markdown内容
+  articleCategory: [], // 文章分类
+  userCategory: [], // 用户分类
+  groupCategory: [], // 组别分类
   theme: {
     color: '495060'
   },
@@ -33,6 +34,9 @@ const getters = {
   article (state) {
     return state.articleContent
   },
+  markdown (state) {
+    return state.mdContent
+  },
   articleCategory (state) {
     return state.articleCategory
   },
@@ -58,6 +62,9 @@ const mutations = {
   },
   updateArticle (state, param) {
     state.articleContent = param
+  },
+  updateMardown (state, param) {
+    state.mdContent = param
   },
   updateArticleCategory (state, param) {
     state.articleCategory = param
