@@ -9,7 +9,8 @@
         </Breadcrumb>
       </Col>
       <Col span="12" style="text-align:right;">
-        <Button type="primary" class="v-m" @click="jump('/article/add')">写文章</Button>
+        <Button type="primary" class="v-m" @click="download(info.aId)">下载文件</Button>
+        <Button type="primary" class="v-m" @click="jump('/article/add')" style="margin-left:10px;">写文章</Button>
       </Col>
     </Row>
     <div class="panel">
@@ -18,7 +19,7 @@
   </div>
 </template>
 <script>
-  import {articleInfo, file} from '@/config'
+  import {articleInfo, file, articledownload} from '@/config'
   import axios from 'axios'
   export default {
     metaInfo: {
@@ -47,6 +48,9 @@
           console.log(res)
           this.info = res.data
         })
+      },
+      download (id) {
+        window.location.href = articledownload + id
       }
     }
   }

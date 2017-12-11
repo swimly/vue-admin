@@ -32,10 +32,12 @@
       <Row>
         <Col :span="preview ? '16' : '24'">
           <Form :model="form">
-            <FormItem label="标题：">
+            <FormItem>
+              <span slot="label"><i class="need">*</i>标题：</span>
               <Input v-model="form.title" placeholder="请输入文章标题！" size="large" style="width:60%;"></Input>
             </FormItem>
-            <FormItem label="类别：">
+            <FormItem>
+              <span slot="label"><i class="need">*</i>类别：</span>
               <RadioGroup v-model="form.category" type="button">
                 <Radio :label="item.name" v-for="(item, index) in articleCategory" :key="index"></Radio>
               </RadioGroup>
@@ -43,15 +45,18 @@
               <router-link to="/setting/category">设置</router-link>
             </Tooltip>
             </FormItem>
-            <FormItem label="标签：">
+            <FormItem>
+              <span slot="label"><i class="need">*</i>标签：</span>
               <Tag type="dot" closable v-for="(item, index) in form.tags" :key="index" @on-close="delTag(index)">{{item}}</Tag>
               <Input v-model="tagValue" placeholder="请输入标签名称" style="width: 120px" v-if="taging" @keyup.enter.native="addTag" ref="saveTagInput" @on-blur="inputBlur"></Input>
               <Button type="ghost" v-if="!taging" @click="inputTag" icon="ios-plus-empty">添加标签</Button>
             </FormItem>
-            <FormItem label="摘要：">
+            <FormItem>
+              <span slot="label"><i class="need">*</i>摘要：</span>
               <Input v-model="form.summary" placeholder="请输入摘要，不得超过120个字符！" size="large" type="textarea" :rows="4" style="width:70%;"></Input>
             </FormItem>
-            <FormItem label="封面：">
+            <FormItem>
+              <span slot="label"><i class="need">*</i>封面：</span>
               <Upload
                 action="http://192.168.3.214/web/api/public/upload"
                 name="upFile"
@@ -64,7 +69,8 @@
             </FormItem>
             <Row>
               <Col style="width:400px;">
-                <FormItem label="作者：">
+                <FormItem>
+                  <span slot="label"><i class="need">*</i>作者：</span>
                   <Input v-model="form.author" placeholder="请输入作者！" size="large" style="width:300px;"></Input>
                 </FormItem>
               </Col>
@@ -166,7 +172,7 @@ export default {
         recommend: true,
         tags: [],
         fine: true,
-        category: '前端',
+        category: '',
         original: false,
         originallink: '',
         md: ''
@@ -230,41 +236,44 @@ export default {
       })
     },
     publish () {
-      let tag = ''
-      for (var i in this.result) {
-        if (typeof this.result[i] === 'boolean') {
-          if (this.result[i]) {
-            this.form[i] = 1
-          } else {
-            this.form[i] = 0
+      if (!this.form.title || !this.form.tags.length || !this.form.category || !this.form.summary || !this.form.cover || !this.form.author || !this.form.description) {
+        this.$Message.error('标星号为必填项！')
+      } else {
+        let tag = ''
+        for (var i in this.result) {
+          if (typeof this.result[i] === 'boolean') {
+            if (this.result[i]) {
+              this.form[i] = 1
+            } else {
+              this.form[i] = 0
+            }
           }
         }
-      }
-      this.form.tags.forEach((item, index) => {
-        tag += item + ','
-      })
-      this.form.tags = tag
-      // axios({
-      //   url: addArticle,
-      //   methods: 'get',
-      //   params: this.form
-      // }).then(res => {
-      //   console.log(res)
-      // })
-      var formdata = new FormData()
-      for (var j in this.form) {
-        formdata.append(j, this.form[j])
-      }
-      console.log(this.form)
-      axios({
-        url: addArticle,
-        method: 'post',
-        data: formdata,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+        this.form.tags.forEach((item, index) => {
+          tag += item + ','
+        })
+        this.form.tags = tag
+        // axios({
+        //   url: addArticle,
+        //   methods: 'get',
+        //   params: this.form
+        // }).then(res => {
+        //   console.log(res)
+        // })
+        var formdata = new FormData()
+        for (var j in this.form) {
+          formdata.append(j, this.form[j])
         }
-      }).then(res => {
-        if (res.data) {
+        console.log(this.form)
+        axios({
+          url: addArticle,
+          method: 'post',
+          data: formdata,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        }).then(res => {
+          console.log(res)
           this.$Message.success('文章发布成功！')
           this.$router.replace('/article')
           this.form = {
@@ -281,8 +290,12 @@ export default {
             originallink: '',
             md: ''
           }
-        }
-      })
+        }).catch (err => {
+          console.log(err)
+          // this.$Message.success('文章发布成功！')
+          // this.$router.replace('/article')
+        })
+      }
     },
     watchContent (v, o) {
       this.form.description = v
